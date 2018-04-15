@@ -16,7 +16,17 @@ energy_data <- read.table(file = "household_power_consumption.txt", header = FAL
 
 colnames(energy_data) <- colnames(energy_data_hdr)
 
-## plot histogram
-png("plot1.png", width=480, height=480)
-hist(energy_data$Global_active_power, col = "red", main = "Global Active Power", xlab = "Gobal Active Power (kilowatts)", ylab = "Frequency")
+## put Date and Time variables to Date/Time class
+energy_data$Date <- paste(energy_data$Date, energy_data$Time)
+energy_data$Date = as.POSIXct(dmy_hms(energy_data$Date))
+
+energy_data$Global_active_power <- as.numeric(energy_data$Global_active_power)
+
+energy_data <- select(energy_data, Date, Global_active_power)
+
+
+# create plot
+png("plot2.png", width=480, height=480)
+with(energy_data, plot(Date, Global_active_power, type="l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 dev.off()
+
