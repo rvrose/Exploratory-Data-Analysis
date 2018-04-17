@@ -2,6 +2,7 @@ gcd.zip <- download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2F
 unzip("kWh.zip")
 library(dplyr)
 library(data.table)
+library(lubridate)
 
 ## read data files from home directory
 
