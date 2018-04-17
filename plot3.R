@@ -27,14 +27,13 @@ energy_data$Sub_metering_3 <- as.numeric(energy_data$Sub_metering_3)
 
 energy_data <- select(energy_data, Date, Sub_metering_1, Sub_metering_2, Sub_metering_3)
 
+##plot chart
 
 png("plot3.png", width=480, height=480)
-attach(energy_data)
-plot(Sub_metering_1 ~ Date, type = "l", 
-     ylab = "Energy sub metering", xlab = "")
-lines(Sub_metering_2 ~ Date, col = "Red")
-lines(Sub_metering_3 ~ Date, col = "Blue")
-legend("topright", lty = 1, col = c("black", "red", "blue"), 
-   legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-detach(energy_data)
+with(energy_data, plot(Date, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = ""))
+with(energy_data, lines(Date, Sub_metering_2, col = "Red"))
+with(energy_data, lines(Date, Sub_metering_3, col = "Blue"))
+
+with(energy_data, legend("topright", lty = 1, col = c("black", "red", "blue"), 
+                         legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")))
 dev.off()
