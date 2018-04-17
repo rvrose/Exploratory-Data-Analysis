@@ -21,7 +21,7 @@ colnames(energy_data) <- colnames(energy_data_hdr)
 energy_data$Date <- paste(energy_data$Date, energy_data$Time)
 energy_data$Date = as.POSIXct(dmy_hms(energy_data$Date))
 
-
+## variables to correct classes
 energy_data$Global_active_power <- as.numeric(energy_data$Global_active_power)
 energy_data$Global_reactive_power <- as.numeric(energy_data$Global_reactive_power)
 energy_data$Voltage <- as.numeric(energy_data$Voltage)
@@ -46,7 +46,7 @@ with(energy_data, plot(datetime, Voltage, type = "l"))
 with(energy_data, plot(datetime, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = ""))
 with(energy_data, lines(datetime, Sub_metering_2, col = "Red"))
 with(energy_data,lines(datetime, Sub_metering_3, col = "Blue"))
-##cex=0.9, pt.cex = 0.5,
+
 with(energy_data, legend("topright",  lty = 1, lwd = 2,
                          cex=.8, xjust = 1, yjust = 1, col = c("black", "red", "blue"),bty = "n", 
                          legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")))
