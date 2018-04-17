@@ -2,6 +2,7 @@ gcd.zip <- download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2F
 unzip("kWh.zip")
 library(dplyr)
 library(data.table)
+library(lubridate)
 
 ## read data files from home directory
 
@@ -34,5 +35,6 @@ plot(Sub_metering_1 ~ Date, type = "l",
 lines(Sub_metering_2 ~ Date, col = "Red")
 lines(Sub_metering_3 ~ Date, col = "Blue")
 legend("topright", lty = 1, col = c("black", "red", "blue"), 
-       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+   legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+detach(energy_data)
 dev.off()
